@@ -5,48 +5,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= page %></title>
     <style>
-        body{
-            background-color: rgba(127, 255, 212, 0.468);
+        body {
+            background-color: #87CEEB; /* Sky Blue */
             text-align: center;
-           
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
         }
-        h1{
-            font-size: 50px;
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: red;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        a {
+            color: #FF6347; /* Tomato Red */
+            text-decoration: none;
             font-weight: bold;
         }
-        a{
-            color: red;
-            background-color: white;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+        marquee {
+            background-color: #F0FFF0; /* Honeydew */
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #FFF;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #87CEFA; /* Light Sky Blue */
+        }
+
+        tr:nth-child(even) {
+            background-color: #F0F8FF; /* Alice Blue */
+        }
+
+        tr:hover {
+            background-color: #ADD8E6; /* Light Blue */
+        }
+
+        td a {
+            color: #333;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+
+        td a:hover {
+            background-color: #333;
+            color: #FFF;
+        }
+
+        @media only screen and (max-width: 600px) {
+            header {
+                font-size: 1.5em;
+            }
+
+            td, th {
+                font-size: 0.9em;
+            }
+
+            td a {
+                padding: 5px 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1> Student Data</h1>
-    <h3><%= title %>   </h3>
+    <h1>STUDENT DATA</h1>
+    <h3><%= title %></h3>
     <marquee>
-        <h4><a href = "/register">_ Student Register Here_</a></h4>
+        <h4><a href="/register">_ Student Register Here_</a></h4>
     </marquee>
-    <% if (students!=""){%>
-    <table border="4px" width="100%">
+    <% if (students!=""){ %>
+    <table>
         <tr>
             <th>Roll No.</th>
             <th>Name</th>
             <th>Mail</th>
             <th>Age</th>
-            <th>Oprations</th>
+            <th>Operations</th>
         </tr>
-        <% students.forEach((students,index) => { %>
+        <% students.forEach((student, index) => { %>
         <tr>
             <td><%= index+1 %></td>
-            <td><%= students.name %></td>
-            <td><%= students.mail %></td>
-            <td><%= students.age %></td>
-            <td><a href="/edit/<%= students._id %>">Update</a> | <a href = "/delete/<%= students._id %>">Delete</a></td>
-            
+            <td><%= student.name %></td>
+            <td><%= student.mail %></td>
+            <td><%= student.age %></td>
+            <td>
+                <a href="/edit/<%= student._id %>">Update</a> | 
+                <a href="/delete/<%= student._id %>">Delete</a>
+            </td>
         </tr>
         <% }) %>
-    </table> <% } %>
+    </table>
+    <% } %>
 </body>
 </html>
 
